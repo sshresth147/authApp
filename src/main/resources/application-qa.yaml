@@ -1,0 +1,48 @@
+server:
+  port: 8081
+
+#database
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_app
+    username: root
+
+    password: admin
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    ##NEEDED FOR PRODUCTION ENVIRONMENT
+#    hikari:
+#        pool-name: HikariCP
+#
+#
+#        # Core pool sizing
+#        minimum-idle: 10
+#        maximum-pool-size: 50
+#
+#        # Timeouts (in ms)
+#        idle-timeout: 600000        # 10 minutes
+#        max-lifetime: 1800000       # 30 minutes (should be < DB timeout)
+#        connection-timeout: 30000   # 30 seconds
+#
+#        # Connection health
+#        validation-timeout: 5000
+#        leak-detection-threshold: 20000  # detect leaks after 20s
+#
+#        # Performance optimizations
+#        auto-commit: false
+#        initialization-fail-timeout: -1
+#
+#        # Optional (depends on DB)
+#        connection-test-query: SELECT 1
+#
+#        # Metrics & monitoring
+#        register-mbeans: true
+
+  jpa:
+    hibernate:    #automatically creates queries
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        show_sql: true
+        format_sql: true
+#jpa and hibernate configuration(Update will create a table if there is no table found in db schema for entity classes)
