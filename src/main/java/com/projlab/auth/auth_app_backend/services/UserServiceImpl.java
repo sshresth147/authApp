@@ -4,6 +4,7 @@ import com.projlab.auth.auth_app_backend.dtos.UserDto;
 import com.projlab.auth.auth_app_backend.entities.Provider;
 import com.projlab.auth.auth_app_backend.entities.User;
 import com.projlab.auth.auth_app_backend.exceptions.ResourceNotFoundException;
+import com.projlab.auth.auth_app_backend.helpers.UserHelper;
 import com.projlab.auth.auth_app_backend.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -48,17 +50,32 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto updateUser(UserDto userDto, String userId) {
-        return null;
+        User existingUser = userRepository.findById(UserHelper.parseUUID(userId)).orElseThrow(()-> new ResourceNotFoundException("user not found for the provided userid"));
+
+        if(userDto.getName()!=null) existingUser.setName(userDto.getName());
+        if(userDto.getImage()!=null) existingUser.setImage(userDto.getImage());
+        if(userDto.getProvider()!=null) existingUser.setProvider(userDto.getProvider());
+
+        //todo change the pw updation later
+        if(userDto.getPassword()!=null) existingUser.setPassword(userDto.getPassword());
+
+        existingUser.setEnable(userDto.isEnable());
+        User updatedUser = userRepository.save(existingUser);
+
+        return modelMapper.map(updatedUser, UserDto.class);
     }
 
     @Override
     public void deleteUser(String userId) {
-
+        UUID UID= UserHelper.parseUUID(userId);
+        User user = userRepository.findById(UID).orElseThrow(()-> new ResourceNotFoundException("user not found for the provided userid"));
+        userRepository.delete(user);
     }
 
     @Override
     public UserDto getUserById(String userId) {
-        return null;
+        User user = userRepository.findById(UserHelper.parseUUID(userId)).orElseThrow(()-> new ResourceNotFoundException("user not found for the provided userid"));
+        return modelMapper.map(user, UserDto.class);
     }
 
     @Override
