@@ -3,6 +3,8 @@ package com.projlab.auth.auth_app_backend.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 import java.util.HashSet;
@@ -33,7 +35,11 @@ public class User {
     private String password;
     private String image;
     private boolean enable = true;
+
+    @CreationTimestamp
     private Instant createdAt = Instant.now();
+
+    @UpdateTimestamp
     private Instant updatedAt = Instant.now();
 
 

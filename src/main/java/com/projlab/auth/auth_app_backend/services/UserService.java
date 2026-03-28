@@ -1,6 +1,11 @@
 package com.projlab.auth.auth_app_backend.services;
 
 import com.projlab.auth.auth_app_backend.dtos.UserDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 
 public interface UserService {
 
@@ -21,5 +26,5 @@ public interface UserService {
     UserDto getUserById(String userId);
 
     //get all users
-    Iterable<UserDto>getAllUsers();
+    List<UserDto> getAllUsers();
 }
