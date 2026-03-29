@@ -1,4 +1,11 @@
 package com.projlab.auth.auth_app_backend.services;
 
-public class AuthService {
+import com.projlab.auth.auth_app_backend.dtos.UserDto;
+
+public interface AuthService {
+    UserDto registerUser(UserDto userDto);
+
+
+
+    //login user
 }

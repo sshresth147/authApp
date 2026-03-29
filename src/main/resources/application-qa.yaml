@@ -46,3 +46,6 @@ spring:
         show_sql: true
         format_sql: true
 #jpa and hibernate configuration(Update will create a table if there is no table found in db schema for entity classes)
+logging:
+  level:
+    org.springframework.security: DEBUG

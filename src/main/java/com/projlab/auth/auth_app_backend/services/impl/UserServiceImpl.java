@@ -1,4 +1,4 @@
-package com.projlab.auth.auth_app_backend.services;
+package com.projlab.auth.auth_app_backend.services.impl;
 
 import com.projlab.auth.auth_app_backend.dtos.UserDto;
 import com.projlab.auth.auth_app_backend.entities.Provider;
@@ -6,6 +6,7 @@ import com.projlab.auth.auth_app_backend.entities.User;
 import com.projlab.auth.auth_app_backend.exceptions.ResourceNotFoundException;
 import com.projlab.auth.auth_app_backend.helpers.UserHelper;
 import com.projlab.auth.auth_app_backend.repositories.UserRepository;
+import com.projlab.auth.auth_app_backend.services.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
