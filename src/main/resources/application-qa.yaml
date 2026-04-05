@@ -49,3 +49,18 @@ spring:
 logging:
   level:
     org.springframework.security: DEBUG
+
+
+security:
+  jwt:
+    secret: ${JWT_SECRET:saiofal7f9a2c8d4e6b1a93f0c5d7e8b2a4c6d9}
+    issuer: ${JWT_ISSUER:api.substring.com}
+    access-ttl-seconds: ${JWT_ACCESS_TTL_SECONDS:3600}
+    refresh-ttl-seconds: ${JWT_REFRESH_TTL_SECONDS:1209600} # 14 days
+
+  refresh-token-cookie:
+    name: ${JWT_REFRESH_COOKIE_NAME:refreshToken}
+    http-only: true
+    secure: true
+    same-site: lax
+    path: /
