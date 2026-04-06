@@ -83,7 +83,10 @@
 			<version>3.2.4</version>
 		</dependency>
 
-
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
 		<!-- JJWT API (always required) -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
