@@ -41,7 +41,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String header = request.getHeader("Authorization");
 
         logger.info("Authorization header : {}",header);
-        if (header == null && header.startsWith("Bearer ")) {
+        if (header != null && header.startsWith("Bearer ")) {
             //token extratction and validate with authentication create and then security context
             String token = header.substring(7);
 
@@ -85,19 +85,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 
             } catch (ExpiredJwtException e) {
-
-                e.printStackTrace();
+                request.setAttribute("error","Token Expired");
+                //e.printStackTrace();
 
             } catch (MalformedJwtException e) {
-
-                e.printStackTrace();
+                request.setAttribute("error","Invalid Token");
+                //e.printStackTrace();
 
             } catch (JwtException e) {
-
-                e.printStackTrace();
+                request.setAttribute("error","Token Expired");
+                //e.printStackTrace();
 
             } catch (Exception e) {
-
+                request.setAttribute("error","Token Expired");
                 e.printStackTrace();
 
             }
